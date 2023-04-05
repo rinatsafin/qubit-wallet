@@ -1,3 +1,155 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "next": {
+      "rootDir": "src/*/"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "env": {
+    "browser": true,
+    "amd": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:react/jsx-runtime",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@next/next/recommended",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:prettier/recommended" // Make sure this is always the last element in the array.
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "import",
+    "jsx-a11y",
+    "react-hooks",
+    "prettier"
+  ],
+  "rules": {
+    "react/function-component-definition": "off",
+    "no-param-reassign": "warn",
+    "no-console": "off",
+    "no-bitwise": "off",
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name=/^(log|info|debug)$/]",
+        "message": "Unexpected property on console object was called"
+      }
+    ],
+    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
+    "import/prefer-default-export": [
+      "off",
+      {
+        "target": "single"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/*.spec.js",
+          "**/*.spec.tsx",
+          "**/*.spec.ts",
+          "test/**", // tape, common npm pattern
+          "tests/**", // also common npm pattern
+          "spec/**", // mocha, rspec-like pattern
+          "**/__tests__/**", // jest pattern
+          "**/__mocks__/**", // jest pattern
+          "test.{js,jsx}", // repos with a single test file
+          "test-*.{js,jsx}", // repos with multiple top-level test files
+          "**/*{.,_}{test,spec}.{js,jsx}", // tests where the extension or filename suffix denotes that it is a test
+          "**/jest.config.js", // jest config
+          "**/jest.setup.js", // jest setup,
+          "**/setupTests.js",
+          "**/.eslintrc" // eslint config
+        ],
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "jsx-a11y/accessible-emoji": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "simple-import-sort/imports": "off",
+    "simple-import-sort/exports": "error",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "import/no-cycle": [2, { "maxDepth": 1 }],
+    "import/no-self-import": "error",
+    "import/no-absolute-path": "off",
+    // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-restricted-imports.md
+    "@typescript-eslint/no-restricted-imports": ["error"],
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/no-var-requires": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*/test/**/*.{ts,js,tsx,jsx}"],
+      "env": {
+        "jest": true,
+        "node": true
+      }
+    },
+    {
+      // https://redux-toolkit.js.org/usage/immer-reducers#linting-state-mutations
+      // feel free to replace with your preferred file pattern - eg. 'src/**/*Slice.ts'
+      "files": ["src/**/*.slice.ts", "src/**/slice/*Slice.ts", "src/**/*Slice.ts"],
+      // avoid state param assignment
+      "rules": { "no-param-reassign": ["error", { "props": false }] }
+    }
+  ]
 }

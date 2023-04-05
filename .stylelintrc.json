@@ -1,0 +1,16 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-prettier"],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "max-nesting-depth": [
+      2,
+      {
+        "ignore": ["pseudo-classes"]
+      }
+    ],
+    "font-family-no-missing-generic-family-keyword": null,
+    "color-no-invalid-hex": true,
+    "unit-allowed-list": null,
+    "at-rule-no-unknown": null
+  }
+}
