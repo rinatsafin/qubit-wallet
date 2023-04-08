@@ -1,0 +1,3 @@
+// CHR TOKEN is valid on BSC Testnet and ETH Mainnet
+export const CHROMNIA_CONTRACT_ADDRESS = '0x8A2279d4A90B6fe1C4B30fa660cC9f926797bAA2';
+export const CHROMNIA_CONTRACT_ABI = {};

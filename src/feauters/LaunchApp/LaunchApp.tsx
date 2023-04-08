@@ -1,68 +1,39 @@
 import { Button, LaunchAppButton, Sidebar } from '@/shared/components';
-import { useState } from 'react';
+import { useIsMounted } from '@/shared/hooks';
+import { Size } from '@/shared/types';
+import { useState, type FC } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 
-const LaunchApp = () => {
-  // const { connector, isConnected } = useAccount();
-  // const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
-  // const { disconnect } = useDisconnect();
+interface LaunchAppProps {
+  size?: Size;
+  className?: string;
+  isHiddenAfterLogin?: boolean;
+}
 
-  // return (
-  //   <div>
-  //     <div>
-  //       {isConnected && (
-  //         <button onClick={() => disconnect()}>Disconnect from {connector?.name}</button>
-  //       )}
-
-  //       {connectors
-  //         ?.filter((x) => x.ready && x.id !== connector?.id)
-  //         .map((x) => (
-  //           <button key={x.id} onClick={() => connect({ connector: x })}>
-  //             {x.name}
-  //             {isLoading && x.id === pendingConnector?.id && ' (connecting)'}
-  //           </button>
-  //         ))}
-  //     </div>
-
-  //     {error && <div>{error.message}</div>}
-  //   </div>
-  // );
+const LaunchApp: FC<LaunchAppProps> = ({ size, className, isHiddenAfterLogin }) => {
+  const isMounted = useIsMounted();
   const { isConnected, connector } = useAccount();
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
   const { disconnect } = useDisconnect();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   const onToggleSidebar = (event: Event) => {
-  //     const target = event.target as Element;
-  //     const { className } = target;
-  //     const isClipMediaTarget =
-  //       typeof className === 'string' && className.includes();
-  //     setIsSidebarOpen((prev) => !prev);
-  //   };
-  //   document.addEventListener('click', onToggleSidebar);
-  //   return () => {
-  //     document.removeEventListener('click', onToggleSidebar);
-  //   };
-  // }, []);
-
+  if (!isMounted || (isHiddenAfterLogin && isConnected)) return null;
   return (
     <>
       <LaunchAppButton
+        size={size}
+        className={className}
         isConnected={isConnected}
         onClick={() => (!isConnected ? setIsSidebarOpen(true) : disconnect())}
       />
-      <Sidebar
-        isSidebarOpen={isSidebarOpen}
-        onCloseClick={() => setIsSidebarOpen(false)}
-        classProps='rounded-xl'
-      >
+      <Sidebar isSidebarOpen={isSidebarOpen} onCloseClick={() => setIsSidebarOpen(false)}>
         <>
           <h3 className='mt-6 text-2xl font-semibold'>Connect a wallet</h3>
           {connectors
             ?.filter((x) => x.ready && x.id !== connector?.id)
             .map((c) => (
               <Button
+                className='border-2 border-[#] p-3'
                 key={c.id}
                 onClick={() => {
                   connect({ connector: c });
@@ -73,7 +44,7 @@ const LaunchApp = () => {
                 {isLoading && c.id === pendingConnector?.id && ' (connecting)'}
               </Button>
             ))}
-          {error && <div className='mt-4 text-gray-400'>{error.message}</div>}
+          {error && <div className='mt-4 text-rose-500'>{error.message}</div>}
         </>
       </Sidebar>
     </>

@@ -1,19 +1,19 @@
 import { configureChains, createClient } from 'wagmi';
-import { bscTestnet, goerli, mainnet } from 'wagmi/chains';
+import { bsc, bscTestnet, goerli, mainnet } from 'wagmi/chains';
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLegacy';
-import { infuraProvider } from 'wagmi/providers/infura';
+// import { WalletConnectConnector } from 'wagmi/dist/connectors/walletConnect';
+// import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet, bscTestnet, goerli],
+  [mainnet, bsc, bscTestnet, goerli],
   [
     // TODO: FIX ME!!!
     publicProvider(),
-    infuraProvider({ apiKey: 'cccd0eba9e1a4186bf0c466e91d91419' }),
+    // infuraProvider({ apiKey: 'cccd0eba9e1a4186bf0c466e91d91419' }),
   ],
 );
 
@@ -29,12 +29,12 @@ export const client = createClient({
         appName: 'wagmi',
       },
     }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        projectId: 'qubit-wallet',
-      },
-    }),
+    // new WalletConnectConnector({
+    //   chains,
+    //   options: {
+    //     projectId: 'qubit-wallet',
+    //   },
+    // }),
     new WalletConnectLegacyConnector({
       chains,
       options: {

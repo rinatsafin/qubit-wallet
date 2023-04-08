@@ -1,5 +1,4 @@
-import { CustomHead, Footer, Navbar, Transactions, Welcome } from '@/feauters';
-import { Services } from '@/feauters/Services';
+import { Welcome } from '@/feauters';
 import { type FC } from 'react';
 
 // type HomePageProps = {};
@@ -7,20 +6,11 @@ import { type FC } from 'react';
 
 const HomePage: FC = () => {
   return (
-    <>
-      <CustomHead />
-      <main>
-        <div className='main relative min-h-screen bg-black text-white bg-blend-darken'>
-          <div className='gradient-bg-welcome'>
-            <Navbar />
-            <Welcome />
-          </div>
-          <Services />
-          <Transactions />
-          <Footer />
-        </div>
-      </main>
-    </>
+    <main>
+      <div className='main relative min-h-screen text-white bg-blend-darken'>
+        <Welcome />
+      </div>
+    </main>
   );
 };
 
