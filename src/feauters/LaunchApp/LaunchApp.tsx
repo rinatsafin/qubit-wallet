@@ -7,17 +7,17 @@ import { useAccount, useConnect, useDisconnect } from 'wagmi';
 interface LaunchAppProps {
   size?: Size;
   className?: string;
-  isHiddenAfterLogin?: boolean;
+  isHiddenAfterConnect?: boolean;
 }
 
-const LaunchApp: FC<LaunchAppProps> = ({ size, className, isHiddenAfterLogin }) => {
+const LaunchApp: FC<LaunchAppProps> = ({ size, className, isHiddenAfterConnect }) => {
   const isMounted = useIsMounted();
   const { isConnected, connector } = useAccount();
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
   const { disconnect } = useDisconnect();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
-  if (!isMounted || (isHiddenAfterLogin && isConnected)) return null;
+  if (!isMounted || (isHiddenAfterConnect && isConnected)) return null;
   return (
     <>
       <LaunchAppButton

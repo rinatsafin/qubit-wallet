@@ -1,5 +1,6 @@
 export * from './Balance';
-export * from './CryptoCard';
+export * from './ContractBalance';
+export * from './CryptoCards';
 export * from './CustomHead';
 export * from './Footer';
 export * from './LaunchApp';

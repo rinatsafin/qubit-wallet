@@ -1,4 +1,4 @@
-// import styles from '@/styles/Home.module.css';
+// import styles from '@/shared/styles/Home.module.css';
 // import Head from 'next/head';
 // import Image from 'next/image';
 import { CustomHead, Footer, Navbar, Services, Transactions } from '@/feauters';

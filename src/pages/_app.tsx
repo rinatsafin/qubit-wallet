@@ -1,5 +1,5 @@
 import { client } from '@/shared/config';
-import '@/styles/globals.css';
+import '@/shared/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { WagmiConfig } from 'wagmi';
 import { ErrorBoundary } from './providers/ErrorBoundary';

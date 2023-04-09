@@ -1,4 +1,4 @@
-import { CryptoCard, NetworkSwitcher } from '@/feauters';
+import { CryptoCards, NetworkSwitcher } from '@/feauters';
 import { Button, Loader } from '@/shared/components';
 import clsx from 'clsx';
 import { InputHTMLAttributes, type FC } from 'react';
@@ -47,10 +47,10 @@ const Welcome: FC = () => {
             <br />
             Buy and sell cryptocurrencies easily.
           </p>
-          <LaunchApp size='custom' className='mt-4 px-8 py-4 text-4xl' isHiddenAfterLogin />
+          <LaunchApp size='custom' className='mt-4 px-8 py-4 text-4xl' isHiddenAfterConnect />
           <UserProfile />
           {
-            // TODO: Move into compoment
+            // TODO: Move this JSX into a separate component
           }
           <div className='mt-4 grid grid-cols-2 sm:grid-cols-3'>
             <div className={clsx('rounded-tl-2xl', commonStyles)}>Reliability</div>
@@ -66,7 +66,7 @@ const Welcome: FC = () => {
         }
         <div className='mt-10 flex w-full flex-1 flex-col items-center justify-start mf:mt-0'>
           <NetworkSwitcher />
-          <CryptoCard />
+          <CryptoCards />
           {
             // TODO: FORM
           }

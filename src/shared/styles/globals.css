@@ -83,6 +83,21 @@ body {
     radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
 }
 
+/* TODO: This is a temporary solution and should be redesigned. */
+.contract-card {
+  background-color: #3d3d3d;
+  background-image: radial-gradient(circle at 30% 107%, #f5a623, transparent),
+    radial-gradient(circle at 0% 0%, #5d5d5d, transparent),
+    radial-gradient(circle at 100% 0%, #666666, transparent),
+    radial-gradient(circle at 70% 100%, #bebebe, transparent),
+    radial-gradient(circle at 100% 100%, #dedede, transparent),
+    radial-gradient(circle at 0% 100%, #a6a6a6, transparent),
+    radial-gradient(circle at 100% 50%, #a9a9a9, transparent),
+    radial-gradient(circle at 0% 50%, #bfbfbf, transparent),
+    radial-gradient(circle at 50% 0%, #e3e3e3, transparent),
+    radial-gradient(circle at 50% 100%, #f9f9f9, transparent);
+}
+
 .text-gradient {
   background-color: #fff;
   background-image: radial-gradient(at 4% 36%, hsla(0, 0%, 100%, 1) 0, transparent 53%),

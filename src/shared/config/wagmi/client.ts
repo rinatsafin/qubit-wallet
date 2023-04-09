@@ -1,5 +1,5 @@
 import { configureChains, createClient } from 'wagmi';
-import { bsc, bscTestnet, goerli, mainnet } from 'wagmi/chains';
+import { bsc, bscTestnet, goerli, mainnet, polygonMumbai, polygon, sepolia } from 'wagmi/chains';
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
@@ -9,9 +9,46 @@ import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLega
 import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet, bsc, bscTestnet, goerli],
   [
-    // TODO: FIX ME!!!
+    mainnet,
+    bsc,
+    // TODO: Need to clarify, but the library has an old link to Binance Smart Chain
+    // {
+    //   ...bsc,
+    //   name: 'Binance Smart Chain',
+    //   // nativeCurrency: {
+    //   //   // override the default native currency
+    //   //   // https://docs.bnbchain.org/docs/rpc/#bsc-mainnet-chainid-0x38-56-in-decimal
+    //   //   ...bsc.nativeCurrency,
+    //   //   decimals: 56,
+    //   // },
+    //   rpcUrls: {
+    //     // Override the default RPC URL
+    //     // New RPC URL: https://bsc-dataseed.binance.org/
+    //     // https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain
+    //     default: {
+    //       http: ['https://bsc-dataseed.binance.org/'],
+    //     },
+    //     public: {
+    //       http: ['https://bsc-dataseed.binance.org/'],
+    //     },
+    //   },
+    // },
+    bscTestnet,
+    // TODO: Need to clarify, the name field does not match!
+    // {
+    //   ...bscTestnet,
+    //   // Override the default name
+    //   // https://academy.binance.com/en/articles/connecting-metamask-to-binance-smart-chain
+    //   name: 'Smart Chain - Testnet',
+    // },
+    goerli,
+    polygonMumbai,
+    polygon,
+    sepolia,
+  ],
+  [
+    // TODO: FIX ME on PROD!!!
     publicProvider(),
     // infuraProvider({ apiKey: 'cccd0eba9e1a4186bf0c466e91d91419' }),
   ],

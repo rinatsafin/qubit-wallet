@@ -1,38 +1,36 @@
 import { BalanceView } from '@/shared/components';
 import { MAX_BALANCE_LENGTH } from '@/shared/const';
-import type { FetchBalanceArgs, GetAccountResult, GetNetworkResult, Provider } from '@wagmi/core';
+import type { GetAccountResult, GetNetworkResult, Provider } from '@wagmi/core';
 import { type FC } from 'react';
 import { useBalance } from 'wagmi';
 
-interface BalanceProps {
+interface ContractBalanceProps {
   chain: GetNetworkResult['chain'];
   address: GetAccountResult<Provider>['address'];
-  token?: FetchBalanceArgs['token'];
+  token?: GetAccountResult<Provider>['address'];
 }
 
-const Balance: FC<BalanceProps> = ({ chain, address, token }) => {
+const ContractBalance: FC<ContractBalanceProps> = ({ chain, address, token }) => {
+  // const [contractBalance, setContractBalance] = useState<FetchBalanceResult>();
   const { nativeCurrency, id, unsupported } = chain || {};
+  // 0x8A2279d4A90B6fe1C4B30fa660cC9f926797bAA2
   const { data, isLoading, error } = useBalance({
     address,
-    chainId: id,
-    formatUnits: !token ? nativeCurrency?.decimals : undefined,
     token,
-    watch: true,
+    chainId: id,
   });
-  const { formatted, symbol } = data || {};
-  const formattedBalance = formatted
-    ? `Balance ${formatted?.slice(0, MAX_BALANCE_LENGTH)} ${symbol}`
-    : '';
 
+  if (!data) return null;
+  const formattedBalance =
+    data && `Balance ${data.formatted.toString().slice(0, MAX_BALANCE_LENGTH)} ${data.symbol}`;
   return (
     <BalanceView
       isUnsupportedNetwork={unsupported || !nativeCurrency}
       isLoading={isLoading}
       error={error}
       formattedBalance={formattedBalance}
-      networkName={nativeCurrency?.name}
     />
   );
 };
 
-export default Balance;
+export default ContractBalance;

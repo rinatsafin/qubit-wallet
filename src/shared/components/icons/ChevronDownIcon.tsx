@@ -4,7 +4,7 @@ import type { IconBaseProps } from './types';
 
 const ChevronDownIcon: FC<IconBaseProps> = ({ fill = '#252626', className, ...otherProps }) => {
   return (
-    <svg viewBox='0 0 20 20' className={clsx('icon icon-chevron-down h-6 w-4', className)}>
+    <svg viewBox='0 0 20 20' className={clsx('icon icon-chevron-down h-8 w-6', className)}>
       <path
         {...otherProps}
         d='M14.1666 7.64168C14.0104 7.48647 13.7992 7.39935 13.5791 7.39935

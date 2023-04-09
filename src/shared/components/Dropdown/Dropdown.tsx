@@ -56,17 +56,16 @@ function Dropdown({
     <div className={clsx('dropdown-container relative text-black', className)} ref={dropdownRef}>
       <Button
         className={clsx(
-          'dropdown-btn flex cursor-pointer rounded-full border-2 border-gray-400 bg-white px-4 py-2 text-neutral-500',
-          isOpen && 'is-open',
+          'dropdown-btn flex cursor-pointer items-center rounded-full border-2 border-gray-400 bg-white px-4 py-3 text-black',
         )}
         onClick={toggleDropdown}
         tabIndex={0}
         role='button'
       >
-        <div className='dropdown-btn-label w-full text-ellipsis text-center'>
+        <div className='dropdown-btn-label mr-0.5 w-full text-ellipsis text-center'>
           {selectedOption.title || 'Select an option'}
         </div>
-        <ChevronDownIcon />
+        <ChevronDownIcon className={clsx(isOpen && 'rotate-180 transform')} />
       </Button>
       {isOpen && (
         <ul className='dropdown-list absolute z-[1] mt-2 w-full list-none divide-y divide-slate-200 overflow-hidden rounded-xl border-2 border-gray-400 bg-white'>
@@ -74,8 +73,10 @@ function Dropdown({
             <li
               key={option.id}
               className={clsx(
-                'dropdown-list-item flex h-10 items-center justify-center hover:bg-gray-200',
-                option.isDisabled ? 'cursor-not-allowed' : 'cursor-pointer',
+                'dropdown-list-item flex h-10 items-center justify-center',
+                option.isDisabled
+                  ? 'cursor-not-allowed bg-gray-300'
+                  : 'cursor-pointer hover:bg-gray-200',
               )}
             >
               <Button
