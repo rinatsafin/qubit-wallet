@@ -1,11 +1,11 @@
-import { CustomHead, Footer, Navbar, Services } from '@/feauters';
+import { CustomHead, Footer, Navbar } from '@/feauters';
 import { type FC } from 'react';
 import { HomePage } from './HomePage';
 
 const Pages: FC = () => (
   <>
     <HomePage />
-    <Services />
+    {/* <Services /> */}
   </>
 );
 

@@ -1,12 +1,13 @@
 import { Input, Loader } from '@/shared/components';
 import { isValidEtherAddress } from '@/shared/utils';
+import clsx from 'clsx';
 import { ChangeEvent, ChangeEventHandler, FC, FormEvent, useState, Fragment, Key } from 'react';
 
 interface TransactionFormProps {
   onFormSubmit: (event: FormEvent<HTMLFormElement>) => Promise<void>;
   isLoading: boolean;
   onInputChange: ChangeEventHandler<HTMLInputElement>;
-  disabled?: boolean;
+  isDisabled?: boolean;
   errorMessage?: string | null;
   formData: {
     addressTo: string;
@@ -25,7 +26,7 @@ const TransactionForm: FC<TransactionFormProps> = ({
   onFormSubmit,
   onInputChange,
   isLoading,
-  disabled,
+  isDisabled,
   errorMessage,
   formData,
   amountStep,
@@ -106,7 +107,7 @@ const TransactionForm: FC<TransactionFormProps> = ({
           name='addressTo'
           type='text'
           value={formData.addressTo}
-          disabled={disabled}
+          disabled={isDisabled}
           onChange={onChange}
         />
         <Input
@@ -117,15 +118,19 @@ const TransactionForm: FC<TransactionFormProps> = ({
           step={amountStep}
           value={formData.amount}
           onChange={onChange}
-          disabled={disabled}
+          disabled={isDisabled}
         />
         <div className='my-3 h-[1px] w-full bg-gray-400' />
         {isLoading ? (
           <Loader />
         ) : (
           <button
-            className='mt-2 flex w-full justify-center rounded-full border-[1px] border-[#3d4f7c] p-2 hover:border-[#8f3fc4]'
+            className={clsx(
+              'mt-2 flex w-full justify-center rounded-full border-[1px] border-[#3d4f7c] p-2 hover:border-[#8f3fc4]',
+              isDisabled && 'cursor-not-allowed opacity-70',
+            )}
             type='submit'
+            disabled={isDisabled}
           >
             Send token
           </button>

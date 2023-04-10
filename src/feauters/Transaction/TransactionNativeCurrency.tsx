@@ -60,7 +60,7 @@ const TransactionNativeCurrency: FC<TransactionNativeCurrencyProps> = ({
 
   return (
     <TransactionForm
-      disabled={chain?.unsupported}
+      isDisabled={chain?.unsupported || !chain}
       amountStep={amountStep}
       formData={formData}
       isLoading={isLoading}
