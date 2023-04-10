@@ -32,7 +32,7 @@ const CryptoCard: FC<CryptoCardContentProps> = ({
       <div className='flex h-full w-full flex-col justify-between'>
         <div className='flex items-start justify-between'>
           <div className='flex h-10 w-10 items-center justify-center rounded-full border-2'>
-            <CurrencyIcon chainId={chain!.id} token={token} />
+            <CurrencyIcon chainId={chain?.id} token={token} />
           </div>
           <BsInfoCircle fontSize={21} />
         </div>

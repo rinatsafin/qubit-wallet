@@ -49,7 +49,7 @@ function Dropdown({
   }, []);
 
   useEffect(() => {
-    setSelectedOption(defaultOption);
+    if (defaultOption) setSelectedOption(defaultOption);
   }, [defaultOption]);
 
   return (

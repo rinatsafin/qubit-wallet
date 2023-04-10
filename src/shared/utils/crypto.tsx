@@ -1,12 +1,25 @@
-import { SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID } from '@/shared/const';
+import {
+  SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID,
+  SUPPORTED_CURRENCY_SYMBOL_BY_CHAIN_ID,
+} from '@/shared/const';
 import { GetNetworkResult, Address, Chain } from '@wagmi/core';
-import { BigNumber, ethers } from 'ethers';
+import { ethers } from 'ethers';
 
 export const checkIsSupportedContractByChain = (chain: GetNetworkResult['chain']) => {
   if (!chain || !chain?.nativeCurrency || chain.unsupported) return false;
   if (!SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID[chain.id]) return false;
   return true;
 };
+
+export function getCurrenciesOptionsByChain(chain: Chain) {
+  const defaultOption = {
+    symbol: chain.nativeCurrency.symbol,
+  };
+  const contractCurrencySymbol = SUPPORTED_CURRENCY_SYMBOL_BY_CHAIN_ID[chain.id];
+  if (!contractCurrencySymbol) return [defaultOption];
+  const options = [defaultOption, { symbol: contractCurrencySymbol }];
+  return options;
+}
 
 export const getNetworkOptions = ({
   chains,
@@ -37,7 +50,8 @@ export const getNetworkOptions = ({
 };
 
 export const getAmountInBigNumber = (amount: string, decimals: number) => {
-  if (Number.isNaN(Number(amount))) return BigNumber.from(0);
+  if (Number(amount) <= 0 || Number.isNaN(Number(amount)))
+    return ethers.utils.parseUnits('0', decimals);
   const amountInBigNumber = ethers.utils.parseUnits(amount, decimals);
   return amountInBigNumber;
 };

@@ -6,11 +6,11 @@ import { navList } from './const';
 const list = navList.map((item) => <NavbarItem title={item.title} key={item.id} />);
 
 type NavbarItemsProps = {
-  classProps?: string;
+  className?: string;
 };
 
-const NavbarItems: FC<NavbarItemsProps> = ({ classProps }) => (
-  <ul className={clsx('flex-initial list-none flex-row items-center justify-between', classProps)}>
+const NavbarItems: FC<NavbarItemsProps> = ({ className }) => (
+  <ul className={clsx('flex-initial list-none flex-row items-center justify-between', className)}>
     {list}
   </ul>
 );

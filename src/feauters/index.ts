@@ -5,7 +5,6 @@ export * from './Footer';
 export * from './LaunchApp';
 export * from './Navbar';
 export * from './NetworkSwitcher';
-export * from './SendTransaction';
 export * from './Services';
-export * from './Transactions';
+export * from './Transaction';
 export * from './UserProfile';

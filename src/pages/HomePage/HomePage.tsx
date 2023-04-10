@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import { CryptoCards, NetworkSwitcher, SendTransaction, LaunchApp, UserProfile } from '@/feauters';
+import { CryptoCards, NetworkSwitcher, Transaction, LaunchApp, UserProfile } from '@/feauters';
 import { BenifitsView, QubitIntroView } from '@/shared/components';
 
 const HomePage: FC = () => {
@@ -17,7 +17,7 @@ const HomePage: FC = () => {
             <div className='mt-10 flex w-full flex-1 flex-col items-center justify-start mf:mt-0'>
               <NetworkSwitcher />
               <CryptoCards />
-              <SendTransaction />
+              <Transaction />
             </div>
           </div>
         </div>

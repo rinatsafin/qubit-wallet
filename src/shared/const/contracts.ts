@@ -15,7 +15,7 @@ export const UNISWAP_CONTRACT_ADDRESS: Address = '0x1f9840a85d5af5bf1d1762f925bd
 
 // TODO: Add more supported contracts
 export const SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID: {
-  [id: number]: FetchBalanceArgs['token'];
+  [key in EChainId]: FetchBalanceArgs['token'];
 } = {
   [EChainId.ETHEREUM]: CHROMNIA_CONTRACT_ADDRESS,
   [EChainId.BINANCE_TESTNET]: CHROMNIA_CONTRACT_ADDRESS,
@@ -23,9 +23,15 @@ export const SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID: {
 };
 
 // TODO: Add more supported contracts
-export const SUPPORTED_CURRENCY_NAME_BY_CONTRACTS_ADDRESS: { [key: string]: string } = {
+export const SUPPORTED_CURRENCY_NAME_BY_CONTRACTS_ADDRESS: { [key: Address]: string } = {
   [CHROMNIA_CONTRACT_ADDRESS]: 'Chromnia',
-  // [UNISWAP_CONTRACT_ADDRESS]: 'UniSwap',
+  [UNISWAP_CONTRACT_ADDRESS]: 'UniSwap',
+};
+
+export const SUPPORTED_CURRENCY_SYMBOL_BY_CHAIN_ID: { [key in EChainId]: string } = {
+  [EChainId.ETHEREUM]: 'CHR',
+  [EChainId.BINANCE_TESTNET]: 'tCHR',
+  [EChainId.GOERLI]: 'UNI',
 };
 
 // NOTE: This is a sample of how to use the contract read config

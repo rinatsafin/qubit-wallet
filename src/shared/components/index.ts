@@ -1,6 +1,7 @@
 export * from './BalanceView';
 export * from './BenifitsView';
 export * from './Button';
+export * from './CurrencySelect';
 export * from './Dropdown';
 export * from './icons';
 export * from './Input';
@@ -9,3 +10,4 @@ export * from './Loader';
 export * from './Logo';
 export * from './QubitIntroView';
 export * from './Sidebar';
+export * from './TransactionForm';

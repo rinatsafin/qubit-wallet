@@ -26,7 +26,7 @@ const Balance: FC<BalanceProps> = ({ chain, address, token }) => {
 
   return (
     <BalanceView
-      isUnsupportedNetwork={unsupported || !nativeCurrency}
+      isUnsupportedNetwork={unsupported}
       isLoading={isLoading}
       error={error}
       formattedBalance={formattedBalance}

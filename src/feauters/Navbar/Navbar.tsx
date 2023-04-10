@@ -14,7 +14,7 @@ const Navbar: FC = () => {
     <nav className='flex w-full items-center justify-between px-4 py-2 md:justify-center'>
       <Logo />
       <div className='flex'>
-        <NavbarItems classProps='hidden md:flex text-white' />
+        <NavbarItems className='hidden text-white md:flex' />
         <LaunchApp />
         <MenuIcon
           fontSize={28}
@@ -27,7 +27,7 @@ const Navbar: FC = () => {
           className='flex items-center pt-6'
           isHiddenOnMobile
         >
-          <NavbarItems classProps='text-xl' />
+          <NavbarItems className='w-full p-2 text-xl font-semibold' />
         </Sidebar>
       </div>
     </nav>

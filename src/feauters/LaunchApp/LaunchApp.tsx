@@ -29,21 +29,23 @@ const LaunchApp: FC<LaunchAppProps> = ({ size, className, isHiddenAfterConnect }
       <Sidebar isSidebarOpen={isSidebarOpen} onCloseClick={() => setIsSidebarOpen(false)}>
         <>
           <h3 className='mt-6 text-2xl font-semibold'>Connect a wallet</h3>
-          {connectors
-            ?.filter((x) => x.ready && x.id !== connector?.id)
-            .map((c) => (
-              <Button
-                className='border-2 border-[#] p-3'
-                key={c.id}
-                onClick={() => {
-                  connect({ connector: c });
-                  setIsSidebarOpen(false);
-                }}
-              >
-                {c.name.includes('Legacy') ? c.name.replace('Legacy', '') : c.name}
-                {isLoading && c.id === pendingConnector?.id && ' (connecting)'}
-              </Button>
-            ))}
+          <div className='mt-2 flex w-full flex-col'>
+            {connectors
+              ?.filter((x) => x.ready && x.id !== connector?.id)
+              .map((c) => (
+                <Button
+                  className='mt-2 border-2 border-[#] p-3'
+                  key={c.id}
+                  onClick={() => {
+                    connect({ connector: c });
+                    setIsSidebarOpen(false);
+                  }}
+                >
+                  {c.name.includes('Legacy') ? c.name.replace('Legacy', '') : c.name}
+                  {isLoading && c.id === pendingConnector?.id && ' (connecting)'}
+                </Button>
+              ))}
+          </div>
           {error && <div className='mt-4 text-rose-500'>{error.message}</div>}
         </>
       </Sidebar>
