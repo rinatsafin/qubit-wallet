@@ -124,7 +124,7 @@ const SendTransactionContractCurrency: FC<SendTransactionContractCurrencyProps> 
           onChange={onInputChange}
         />
         <Input
-          label={`Amount (${nativeCurrency?.symbol})`}
+          label={`Amount (${data?.symbol})`}
           placeholder='Enter Amount'
           name='amount'
           type='number'
