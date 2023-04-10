@@ -6,7 +6,8 @@ interface SendTransactionFormProps {
   isLoading: boolean;
   onChange: InputHTMLAttributes<HTMLInputElement>['onChange'];
 }
-const SendTransactionForm: FC<SendTransactionFormProps> = ({ onSubmit, isLoading }) => {
+
+const SendTransactionForm: FC<SendTransactionFormProps> = ({ onSubmit, onChange, isLoading }) => {
   return (
     <div className='blue-glassmorphism mt-6 flex w-full flex-col items-center justify-start rounded-2xl p-5 sm:w-96'>
       <form onSubmit={onSubmit}>
@@ -16,14 +17,14 @@ const SendTransactionForm: FC<SendTransactionFormProps> = ({ onSubmit, isLoading
           placeholder='Enter To Address'
           name='addressTo'
           type='text'
-          onChange={() => {}}
+          onChange={onChange}
         />
         <Input
           label='Amount'
           placeholder='Enter Amount'
           name='amount'
           type='text'
-          onChange={() => {}}
+          onChange={onChange}
         />
         <div className='h-[1px] w-full bg-gray-400' />
         {isLoading ? (
@@ -38,5 +39,7 @@ const SendTransactionForm: FC<SendTransactionFormProps> = ({ onSubmit, isLoading
         )}
       </form>
     </div>
-  )
-}
+  );
+};
+
+export default SendTransactionForm;

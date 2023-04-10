@@ -11,4 +11,4 @@ tsconfig.*.json
 tailwind.config.js
 build
 tmp
-# setupTests.js
+setupTests.js

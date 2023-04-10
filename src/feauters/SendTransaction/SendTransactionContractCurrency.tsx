@@ -21,7 +21,7 @@ const SendTransactionContractCurrency: FC<SendTransactionContractCurrencyProps> 
   address,
   amountStep,
 }) => {
-  const { nativeCurrency, id, unsupported } = chain || {};
+  const { id, unsupported } = chain || {};
   const { data, error: balanceError } = useBalance({
     address,
     chainId: id,
