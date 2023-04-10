@@ -3,10 +3,7 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { getEllipsisText } from '@/shared/utils';
 import type { GetNetworkResult, GetAccountResult, Provider, FetchBalanceArgs } from '@wagmi/core';
 import { CurrencyIcon } from '@/shared/components';
-import {
-  Balance,
-  // ContractBalance
-} from '@/feauters';
+import { Balance } from '@/feauters';
 import clsx from 'clsx';
 
 interface CryptoCardContentProps {

@@ -3,7 +3,7 @@ import { useIsMounted } from '@/shared/hooks';
 import { useAccount, useNetwork } from 'wagmi';
 // import { EChain } from '@/shared/types';
 import { checkIsSupportedContractByChain } from '@/shared/utils/crypto';
-import { SUPPORTED_CONTRACTS_BY_CHAIN_ID } from '@/shared/const';
+import { SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID } from '@/shared/const';
 import CryptoCard from './CryptoCard';
 
 const CryptoCards: FC = () => {
@@ -22,7 +22,7 @@ const CryptoCards: FC = () => {
         <CryptoCard
           address={address}
           chain={chain}
-          token={SUPPORTED_CONTRACTS_BY_CHAIN_ID[chain.id]}
+          token={SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID[chain.id]}
         />
       )}
     </div>

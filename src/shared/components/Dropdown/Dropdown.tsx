@@ -3,16 +3,16 @@ import clsx from 'clsx';
 import { PropsWithChildren, ReactNode, useEffect, useRef, useState } from 'react';
 import { ChevronDownIcon } from '../icons';
 
-type Option = {
+export type DropdownOption = {
   title: string | ReactNode | JSX.Element;
   id: number;
   isDisabled?: boolean;
 };
 
 type DropdownProps = {
-  defaultOption: Option;
-  options: Option[];
-  onChange: (selectedOption: Option) => void;
+  defaultOption: DropdownOption;
+  options: DropdownOption[];
+  onChange: (selectedOption: DropdownOption) => void;
   className?: string;
 };
 
@@ -23,11 +23,11 @@ function Dropdown({
   className,
 }: PropsWithChildren<DropdownProps>) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<Option>(defaultOption);
+  const [selectedOption, setSelectedOption] = useState<DropdownOption>(defaultOption);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const onOptionClick = (option: Option) => {
+  const onOptionClick = (option: DropdownOption) => {
     setSelectedOption(option);
     setIsOpen(false);
 
