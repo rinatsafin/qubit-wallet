@@ -1,5 +1,4 @@
 import { type FC, memo, ReactElement, ReactNode } from 'react';
-// import { GetNetworkResult, GetAccountResult, Provider, FetchBalanceArgs } from '@wagmi/core';
 
 interface BalanceViewProps {
   networkName?: string;
@@ -7,9 +6,6 @@ interface BalanceViewProps {
   isLoading?: boolean;
   error?: Error | null;
   formattedBalance?: string | JSX.Element | ReactElement | ReactNode;
-  // chain: GetNetworkResult['chain'];
-  // address: FetchBalanceArgs['address'];
-  // token?: FetchBalanceArgs['token'];
 }
 
 const BalanceView: FC<BalanceViewProps> = ({
@@ -23,9 +19,13 @@ const BalanceView: FC<BalanceViewProps> = ({
     return <p className='mt-1 text-lg font-semibold text-pink-500'>Unsupported network</p>;
   return (
     <div className='flex flex-col items-start justify-between'>
-      <p className='mt-1 text-lg font-semibold'>Network {networkName}</p>
-      <div className='mt-1 flex text-lg font-semibold'>
-        <p>
+      <div className='mt-1 flex'>
+        <p className='text-lg font-semibold'>Network</p>
+        <p className='ml-2'>{networkName}</p>
+      </div>
+      <div className='mt-1 flex'>
+        <p className='text-lg font-semibold'>Balance</p>
+        <p className='ml-2'>
           {isLoading && 'Loading balance...'}
           {!isLoading && error && 'Error loading balance'}
           {!isLoading && !error && formattedBalance}

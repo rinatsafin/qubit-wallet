@@ -1,5 +1,4 @@
 import { SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID } from '@/shared/const';
-import { useIsMounted } from '@/shared/hooks';
 import { checkIsSupportedContractByChain, getCurrenciesOptionsByChain } from '@/shared/utils';
 import { useNetwork, useAccount } from 'wagmi';
 import { useEffect, useState } from 'react';
@@ -10,7 +9,6 @@ import TransactionNativeCurrency from './TransactionNativeCurrency';
 const amountStep = '0.0001';
 
 const Transaction = () => {
-  const isMounted = useIsMounted();
   const { chain } = useNetwork();
   const { address } = useAccount();
   const isContractCurrency = checkIsSupportedContractByChain(chain);
@@ -24,7 +22,6 @@ const Transaction = () => {
     if (chain?.nativeCurrency.symbol) setSelectedCurrency(chain?.nativeCurrency.symbol);
   }, [chain?.nativeCurrency.symbol]);
 
-  if (!isMounted) return null;
   return (
     <div className='blue-glassmorphism mt-6 flex w-full flex-col items-center justify-start rounded-2xl p-4 sm:w-96'>
       <h2 className='text-2xl font-bold'>Send Transaction</h2>

@@ -83,7 +83,7 @@ function Dropdown({
                 onClick={() => onOptionClick(option)}
                 tabIndex={idx + 1}
                 role='button'
-                disabled={option.isDisabled}
+                isDisabled={option.isDisabled}
                 className='flex h-full w-full items-center justify-center'
               >
                 {option.title}

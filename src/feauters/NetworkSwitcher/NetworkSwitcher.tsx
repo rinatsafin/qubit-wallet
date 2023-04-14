@@ -1,12 +1,10 @@
-import { useIsMounted } from '@/shared/hooks';
 import { type FC } from 'react';
 import { useNetwork } from 'wagmi';
 import NetworkSwitcherDropdown from './NetworkSwitcherDropdown';
 
 const NetworkSwitcher: FC = () => {
   const { chain } = useNetwork();
-  const isMounted = useIsMounted();
-  if (!isMounted) return null;
+
   if (!chain) return null;
   return (
     <div className='w-full text-white'>

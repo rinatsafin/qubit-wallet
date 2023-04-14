@@ -8,6 +8,7 @@ export * from './Input';
 export * from './LaunchAppButton';
 export * from './Loader';
 export * from './Logo';
+export * from './NewsView';
 export * from './QubitIntroView';
 export * from './Sidebar';
 export * from './TransactionForm';

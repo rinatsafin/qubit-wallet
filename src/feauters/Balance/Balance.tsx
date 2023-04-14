@@ -20,9 +20,7 @@ const Balance: FC<BalanceProps> = ({ chain, address, token }) => {
     watch: true,
   });
   const { formatted, symbol } = data || {};
-  const formattedBalance = formatted
-    ? `Balance ${formatted?.slice(0, MAX_BALANCE_LENGTH)} ${symbol}`
-    : '';
+  const formattedBalance = formatted ? `${formatted?.slice(0, MAX_BALANCE_LENGTH)} ${symbol}` : '';
 
   return (
     <BalanceView

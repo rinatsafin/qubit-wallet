@@ -6,18 +6,17 @@ import type {
   FC,
   KeyboardEvent,
   MouseEvent,
-  // ReactElement,
   TouchEvent,
 } from 'react';
 
 export interface ButtonProps
   extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLDivElement>, HTMLDivElement>,
     AriaAttributes {
-  disabled?: boolean;
+  isDisabled?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
-  disabled,
+  isDisabled,
   className,
   onClick,
   onKeyDown,
@@ -29,13 +28,13 @@ const Button: FC<ButtonProps> = ({
     event: MouseEvent<HTMLDivElement, globalThis.MouseEvent> | TouchEvent<HTMLDivElement>,
   ) => {
     const mouseEvent = event as MouseEvent<HTMLDivElement>;
-    if (!disabled && onClick) {
+    if (!isDisabled && onClick) {
       onClick(mouseEvent);
     }
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (!disabled && onKeyDown) {
+    if (!isDisabled && onKeyDown) {
       onKeyDown(event);
     }
   };
@@ -43,10 +42,10 @@ const Button: FC<ButtonProps> = ({
   return (
     <div
       {...props}
-      className={clsx('btn', className, disabled && 'cursor-not-allowed disabled:opacity-75')}
+      className={clsx('btn', className, isDisabled && 'cursor-not-allowed disabled:opacity-75')}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      tabIndex={disabled ? -1 : tabIndex ?? 0}
+      tabIndex={isDisabled ? -1 : tabIndex ?? 0}
       role='button'
     >
       {children}

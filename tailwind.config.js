@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './app/**/*.{js,ts,jsx,tsx}',
+    './src/**/*.{js,ts,jsx,tsx}'
+  ],
   mode: 'jit',
   theme: {
     fontFamily: {
@@ -11,6 +14,9 @@ module.exports = {
       screens: {
         mf: '990px',
       },
+      fontFamily: {
+        sans: ['var(--font-sans)'],
+      }
     },
   },
   variants: {

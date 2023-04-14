@@ -1,5 +1,4 @@
 import { Button, LaunchAppButton, Sidebar } from '@/shared/components';
-import { useIsMounted } from '@/shared/hooks';
 import { Size } from '@/shared/types';
 import { useState, type FC } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
@@ -11,13 +10,12 @@ interface LaunchAppProps {
 }
 
 const LaunchApp: FC<LaunchAppProps> = ({ size, className, isHiddenAfterConnect }) => {
-  const isMounted = useIsMounted();
   const { isConnected, connector } = useAccount();
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect();
   const { disconnect } = useDisconnect();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
-  if (!isMounted || (isHiddenAfterConnect && isConnected)) return null;
+  if (isHiddenAfterConnect && isConnected) return null;
   return (
     <>
       <LaunchAppButton
@@ -34,7 +32,7 @@ const LaunchApp: FC<LaunchAppProps> = ({ size, className, isHiddenAfterConnect }
               ?.filter((x) => x.ready && x.id !== connector?.id)
               .map((c) => (
                 <Button
-                  className='mt-2 border-2 border-[#] p-3'
+                  className='mt-2 rounded-xl border-2 p-3 hover:bg-[#e3e3e3]'
                   key={c.id}
                   onClick={() => {
                     connect({ connector: c });

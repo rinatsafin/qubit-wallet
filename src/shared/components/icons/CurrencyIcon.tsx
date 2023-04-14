@@ -1,15 +1,13 @@
 import { EChainId } from '@/shared/types';
 import { type FC } from 'react';
-import { Chain } from 'wagmi';
+import type { Chain, Address } from 'wagmi';
 import { SiBinance, SiEthereum } from 'react-icons/si';
 import { ChromniaCurrencyIcon } from '@/shared/components';
-import { FetchBalanceArgs } from '@wagmi/core';
 import { SUPPORTED_CURRENCY_NAME_BY_CONTRACTS_ADDRESS } from '@/shared/const';
 
 interface CurrencyIconProps {
   chainId?: Chain['id'];
-  // TODO: FIX ME!!!!
-  token?: FetchBalanceArgs['token'];
+  token?: Address;
 }
 
 const CurrencyIcon: FC<CurrencyIconProps> = ({ chainId, token }) => {

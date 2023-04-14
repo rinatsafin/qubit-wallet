@@ -1,5 +1,5 @@
 module.exports = {
-  collectCoverageFrom: ["<rootDir>/src/**/*.ts", "!<rootDir>/src/**/*.d.ts"],
+  collectCoverageFrom: ["<rootDir>/src/**/*.{ts,tsx}", "<rootDir>/app/**/*.{ts,tsx}", "!<rootDir>/app/**/*.d.ts", "!<rootDir>/src/**/*.d.ts"],
   coveragePathIgnorePatterns: ["node_modules"],
   coverageReporters: ["lcov", "html"],
   modulePathIgnorePatterns: ["<rootDir>/handlebars", "<rootDir>/templates"],

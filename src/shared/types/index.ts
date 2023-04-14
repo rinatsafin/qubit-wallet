@@ -1,2 +1,3 @@
-export * from './crypto.types';
-export * from './react.types';
+export * from './crypto.d';
+export * from './news.d';
+export * from './react.d';

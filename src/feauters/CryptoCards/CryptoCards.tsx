@@ -1,15 +1,12 @@
 import { type FC } from 'react';
-import { useIsMounted } from '@/shared/hooks';
 import { useAccount, useNetwork } from 'wagmi';
 import { checkIsSupportedContractByChain } from '@/shared/utils/crypto';
 import { SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID } from '@/shared/const';
 import CryptoCard from './CryptoCard';
 
 const CryptoCards: FC = () => {
-  const isMounted = useIsMounted();
   const { chain } = useNetwork();
   const { address } = useAccount();
-  if (!isMounted) return null;
   // TODO: This part should be redesigned for production.
   // We need to implement the ability to get tokens from user input.
   const isContractCurrency = checkIsSupportedContractByChain(chain);
