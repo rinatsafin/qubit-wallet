@@ -29,7 +29,7 @@ const NavbarItem: FC<NavbarItemProps> = ({ className, title, path, pathname }) =
           </div>
         </>
       ) : (
-        <div className='px-3 py-2'>{title}</div>
+        <div className='cursor-not-allowed px-3 py-2'>{title}</div>
       )}
     </li>
   );
