@@ -6,7 +6,7 @@ type NavbarItemProps = {
   title: string;
   className?: string;
   path: string;
-  pathname: string;
+  pathname: string | null;
 };
 
 const NavbarItem: FC<NavbarItemProps> = ({ className, title, path, pathname }) => {
@@ -15,12 +15,22 @@ const NavbarItem: FC<NavbarItemProps> = ({ className, title, path, pathname }) =
   return (
     <li
       className={clsx(
-        'cursor-pointer rounded-xl px-3 py-2 hover:bg-[#9951f069] hover:text-white md:text-gray-300',
+        'cursor-pointer rounded-xl hover:bg-[#9951f069] hover:text-white md:text-gray-300',
         className,
       )}
     >
-      {path === '/' || path === '/news' ? <Link href={path}>{title}</Link> : title}
-      <div className={clsx('h-[1px] w-full', isActive && 'bg-gray-400')} />
+      {path === '/' || path === '/news' ? (
+        <>
+          <Link href={path} className='block w-full px-3 py-2'>
+            {title}
+          </Link>
+          <div className='px-2'>
+            <div className={clsx('h-[1px] w-full', isActive && 'bg-gray-400')} />
+          </div>
+        </>
+      ) : (
+        <div className='px-3 py-2'>{title}</div>
+      )}
     </li>
   );
 };
