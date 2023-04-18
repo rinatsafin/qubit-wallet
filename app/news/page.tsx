@@ -76,12 +76,12 @@ async function fetchNews({
           },
         },
       ],
-      next = '1',
+      next = null,
       count = 1,
     }: NewsApiResponse = await result.json();
     return {
       results,
-      next: next?.split('page=')[1] ?? null,
+      next: next != null ? next?.split('page=')[1] : '1',
       count,
     };
   } catch (error) {
@@ -99,7 +99,7 @@ const News = async () => {
     revalidate: REVALIDATE_CACHE_NEWS_TIME,
   });
   if (!results.length) return notFound();
-  const maxPages = count / results.length - 1;
+  const maxPages = count / results.length;
   return (
     <div className='flex max-w-screen-mf flex-1 flex-col items-center justify-between px-4 py-12 text-white md:p-10'>
       <h1 className='text-gradient mb-4 text-4xl font-bold sm:text-6xl'>Crypto News</h1>

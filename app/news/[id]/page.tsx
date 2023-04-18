@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 
 // TODO: Move to process.env
 const REVALIDATE_CACHE_NEWS_TIME = 600;
+const TITLE_GO_TO_FIRST_PAGE = 'Go to first page';
 
 // NOTE: This is a workaround for the Next.js bug with dynamic routes.
 async function fetchNews({
@@ -74,12 +75,12 @@ async function fetchNews({
           },
         },
       ],
-      next = '1',
+      next = null,
       count = 1,
     }: NewsApiResponse = await result.json();
     return {
       results,
-      next: next?.split('page=')[1] ?? '1',
+      next: next != null ? next?.split('page=')[1] : '1',
       count,
     };
   } catch (error) {
@@ -114,17 +115,21 @@ interface NextNewsPageProps {
 
 const NextNewsPage = async ({ params }: NextNewsPageProps) => {
   const { id } = params;
-  if (Number.isNaN(Number(id))) return notFound();
+  const parsedId = Number(id);
+  if (Number.isNaN(parsedId)) return notFound();
   const { results, count, next } = await fetchNews({
     page: id,
     revalidate: REVALIDATE_CACHE_NEWS_TIME,
   });
-  if (!results.length) return notFound();
+  const maxPages = count / results.length;
+  if (!results.length || maxPages < parsedId) return notFound();
   const parsedNextPage = Number(next);
-  const prevPage = Number.isNaN(parsedNextPage) || parsedNextPage < 3 ? '' : parsedNextPage - 2;
-  const titlePrevPage = prevPage === '' ? 'Go to first page' : `Go to prev page ${prevPage}`;
-  const maxPages = count / results.length - 1;
-  const isFirstPage = prevPage === '';
+  const isFirstPage = parsedId <= 1;
+  const prevPage = isFirstPage ? '' : parsedId - 1;
+  const titlePrevPage = parsedId === 2 ? TITLE_GO_TO_FIRST_PAGE : `Go to prev page ${prevPage}`;
+  const isLastPage = parsedId >= maxPages;
+  const nextPage = isLastPage ? TITLE_GO_TO_FIRST_PAGE : `Go to next page ${parsedNextPage}`;
+
   return (
     <div className='flex max-w-screen-mf flex-1 flex-col items-center justify-between px-4 py-12 text-white md:p-10'>
       <h1 className='text-gradient mb-4 text-4xl font-bold sm:text-6xl'>Crypto News</h1>
@@ -142,12 +147,7 @@ const NextNewsPage = async ({ params }: NextNewsPageProps) => {
               href={`/news/${prevPage}`}
               className='flex w-full items-center justify-center rounded-lg bg-cyan-600 p-3 text-white hover:bg-cyan-700'
             >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='mr-1 h-5 w-5'
-                viewBox='0 0 20 20'
-                fill='currentColor'
-              >
+              <svg className='mr-1 h-5 w-5' viewBox='0 0 20 20' fill='currentColor'>
                 <path
                   fillRule='evenodd'
                   d='M12.707 3.293a1 1 0 010 1.414L8.414 9H16a1 1 0 110 2H8.414l4.293 4.293a1 1 0 01-1.414 1.414l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 0z'
@@ -161,16 +161,11 @@ const NextNewsPage = async ({ params }: NextNewsPageProps) => {
         <div>
           <p className='mb-2 text-base font-medium text-gray-500'>Next Page</p>
           <Link
-            href={`/news/${next}`}
+            href={`/news/${parsedNextPage}`}
             className='flex w-full items-center justify-center rounded-lg bg-cyan-600 p-3 text-white hover:bg-cyan-700'
           >
-            Go to next page {next}
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='ml-1 h-5 w-5'
-              viewBox='0 0 20 20'
-              fill='currentColor'
-            >
+            {nextPage}
+            <svg className='ml-1 h-5 w-5' viewBox='0 0 20 20' fill='currentColor'>
               <path
                 fillRule='evenodd'
                 d='M7.293 16.707a1 1 0 010-1.414L11.586 11H4a1 1 0 110-2h7.586l-4.293-4.293a1 1 0 011.414-1.414l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0z'
