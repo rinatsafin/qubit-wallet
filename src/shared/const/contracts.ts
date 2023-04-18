@@ -25,7 +25,8 @@ export const SUPPORTED_CONTRACT_ADDRESS_BY_CHAIN_ID: {
 // TODO: Add more supported contracts
 export const SUPPORTED_CURRENCY_NAME_BY_CONTRACTS_ADDRESS: { [key: Address]: string } = {
   [CHROMNIA_CONTRACT_ADDRESS]: 'Chromnia',
-  [UNISWAP_CONTRACT_ADDRESS]: 'UniSwap',
+  // TODO: Add icon for UniSwap
+  // [UNISWAP_CONTRACT_ADDRESS]: 'UniSwap',
 };
 
 export const SUPPORTED_CURRENCY_SYMBOL_BY_CHAIN_ID: { [key in EChainId]: string } = {
