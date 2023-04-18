@@ -8,28 +8,28 @@ const navList = [
   },
   {
     id: uid(),
-    title: 'Market',
+    title: 'News',
+    path: '/news',
+  },
+  {
+    id: uid(),
+    title: 'Market*',
     path: '/market',
   },
   {
     id: uid(),
-    title: 'Exchange',
+    title: 'Exchange*',
     path: '/exchange',
   },
   {
     id: uid(),
-    title: 'Tutorials',
+    title: 'Tutorials*',
     path: '/tutorials',
   },
   {
     id: uid(),
-    title: 'Wallets',
+    title: 'Wallets*',
     path: '/wallets',
-  },
-  {
-    id: uid(),
-    title: 'News',
-    path: '/news',
   },
 ];
 

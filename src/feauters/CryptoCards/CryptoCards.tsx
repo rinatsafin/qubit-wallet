@@ -12,7 +12,7 @@ const CryptoCards: FC = () => {
   const isContractCurrency = checkIsSupportedContractByChain(chain);
 
   return (
-    <div className='crypto-cards w-full'>
+    <div className='crypto-cards flex w-full flex-col items-center justify-center'>
       <CryptoCard address={address} chain={chain} />
       {isContractCurrency && chain && (
         <CryptoCard

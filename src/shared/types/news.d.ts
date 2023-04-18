@@ -37,3 +37,9 @@ export interface INews {
   created_at: string;
   votes: Votes;
 }
+
+export interface NewsApiResponse {
+  results: INews[];
+  next: string | null;
+  count: number;
+}

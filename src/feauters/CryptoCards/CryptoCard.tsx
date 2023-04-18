@@ -25,7 +25,7 @@ const CryptoCard: FC<CryptoCardContentProps> = ({
     <div
       className={clsx(
         token ? 'contract-card' : 'crypto-card',
-        'white-glassmorphism mt-6 h-40 w-full flex-col items-start justify-end rounded-xl p-3 sm:w-72',
+        'white-glassmorphism mt-5 h-40 w-72 flex-col items-start justify-end rounded-xl p-3',
         className,
       )}
     >

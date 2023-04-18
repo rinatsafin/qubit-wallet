@@ -11,7 +11,7 @@ const Navbar: FC = () => {
   const onMenuClose = () => setIsMenuOpen(false);
 
   return (
-    <nav className='flex w-full items-center justify-between px-4 py-2 md:justify-center'>
+    <nav className='m-auto flex max-w-screen-xl items-center justify-between px-4 py-2 md:justify-center'>
       <Logo />
       <div className='flex'>
         <NavbarItems className='hidden text-white md:flex' />
